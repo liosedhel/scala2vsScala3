@@ -10,7 +10,7 @@ trait Growable[A] {
 
 trait Both[A] extends Resettable with Growable[A]
 
-object S2CompoundType extends App {
+object S2CompoundTypeDemo extends App {
 
   def f(x: Resettable with Growable[String]): Unit = {
     x.reset()

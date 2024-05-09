@@ -17,7 +17,7 @@ def f(x: Resettable & Growable[String]): Unit =
   x.add("first")
 
 @main
-def main =
+def s3CompoundTypeDemo =
   f(
     new Resettable with Growable[String]:
       def reset(): Unit = ()

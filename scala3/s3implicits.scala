@@ -16,14 +16,17 @@ object Params:
     m2()(using c)(using ContextInt(1))
     m3(s)
 
-  def m1()(using c: Context) = 
+  def m1()(using c: Context) =
     println(c.c)
 
-  def m2()(using Context)(using ContextWrapper[Int]) = 
+  def m2()(using Context)(using ContextWrapper[Int]) =
     println(summon[Context].c)
 
-  def m3[T: ContextWrapper](s: T) = 
+  def m3[T: ContextWrapper](s: T) =
     println(summon[ContextWrapper[T]].c)
+
+object ContextWrapper:
+  extension (c: Context) def printContext = println(c.c)
 
 @main
 def s3ImplicitsDemo =
@@ -32,3 +35,4 @@ def s3ImplicitsDemo =
 
   Params.method("s")
   Params.method("s")(using Context("newContext"))
+  Context("c").printContext

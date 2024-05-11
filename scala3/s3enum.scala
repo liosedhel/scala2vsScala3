@@ -1,12 +1,5 @@
 //> using scala 3
 
-enum Color(val color: String):
-  def printColor = println(color)
-
-  case Red extends Color("red")
-  case Green extends Color("green")
-  case Other(s: String) extends Color(s)
-
 enum Planet(mass: Double, val radius: Double):
   val G: Double = 6.67300e-11
   def surfaceGravity: Double = G * mass / (radius * radius)
@@ -21,20 +14,19 @@ enum Planet(mass: Double, val radius: Double):
   case Uranus extends Planet(8.686e+25, 2.5559e7)
   case Neptune extends Planet(1.024e+26, 2.4746e7)
 
-@main
-def printPlanet = println(Planet.values.filter(_.radius > 7.0e6).toSeq)
+object ADT:
+  enum Option[+T]:
+    case Some(x: T)
+    case None
+
+enum Color(val color: String):
+  def printColor = println(color)
+
+  case Red extends Color("red")
+  case Green extends Color("green")
+  case Other(s: String) extends Color(s)
 
 @main
 def s3EnumDemo =
-  println(Color.Other("bluish"))
-  val color = Color.Other("bluish")
-  color match
-    case Color.Red      => println("Red")
-    case Color.Green    => println("Green")
-    case Color.Other(s) => println(s)
-
-  println(color.color)
-  color.printColor
-
   println(Planet.values.filter(_.radius > 7.0e6).toSeq)
   val mercury: Planet = Planet.Mercury

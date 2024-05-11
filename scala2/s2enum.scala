@@ -28,12 +28,14 @@ object ADT {
 }
 
 
+sealed abstract class Color(val color: String) {
+  def printColor = println(color)
+}
+case object Red extends Color("red")
+case object Green extends Color("green")
+case class Other(s: String) extends Color(s)
+
 object S2EnumDemo extends App {
   println(Planet.values.filter(_.radius > 7.0e6).toSeq)
   val mercury: Planet.Value = Planet.Mercury
-  mercury match {
-    // case Planet.Mercury(mass, _) => println(s"Mercury mass is: $mass")
-    case Planet.Mercury => println(s"Mercury mass is: ${Planet.Mercury.mass}")
-    case other: Planet.Value => println(other.mass)
-  }
 }

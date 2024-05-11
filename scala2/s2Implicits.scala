@@ -25,8 +25,12 @@ object Params {
   def m2()(implicit c: Context, i: ContextWraper[Int]) = 
     println(implicitly[Context].c)
 
-  def m3[T: ConxtexWrap](s: T) = 
+  def m3[T: ContextWraper](s: T) = 
     println(implicitly[ContextWraper[T]].c)
+}
+
+object ContextWraper {
+  implicit class ContextOps(c: Context) { def printContext = println(c.c)}
 }
 
 object S2ImplicitsDemo extends App {
@@ -35,4 +39,5 @@ object S2ImplicitsDemo extends App {
 
   Params.method("s")
   Params.method("s")(using Context("newContext"))
+  Context("c").printContext
 }

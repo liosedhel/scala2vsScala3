@@ -4,9 +4,11 @@ trait Add[A] {
   def add(x: A, y: A): A
 }
 
-implicit class Adding[A: Add](x: A) {
-  def +(y: A): A =
-    implicitly[Add[A]].add(x, y)
+object Add {
+  implicit class Adding[A: Add](x: A) {
+    def +(y: A): A =
+      implicitly[Add[A]].add(x, y)
+  }
 }
 
 class Rational(val numer: Int, val denom: Int = 1) {
@@ -24,6 +26,7 @@ object Rational {
 }
 
 object S2TypeClassDemo extends App {
+  import Add._
   val rational1 = new Rational(1, 2)
   val rational2 = new Rational(1, 2)
   val sum = rational1 + rational2

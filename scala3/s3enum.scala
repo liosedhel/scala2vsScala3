@@ -1,6 +1,6 @@
 //> using scala 3
 
-enum Planet(mass: Double, val radius: Double):
+enum Planet(mass: Double, val radius: Double) extends java.lang.Enum[Planet]:
   val G: Double = 6.67300e-11
   def surfaceGravity: Double = G * mass / (radius * radius)
   def surfaceWeight(otherMass: Double): Double = otherMass * surfaceGravity
@@ -19,7 +19,7 @@ object ADT:
     case Some(x: T)
     case None
 
-enum Color(val color: String):
+enum Color(color: String):
   def printColor = println(color)
 
   case Red extends Color("red")

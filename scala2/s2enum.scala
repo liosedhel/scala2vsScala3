@@ -27,8 +27,7 @@ object ADT {
   case object None extends Option[Nothing]
 }
 
-
-sealed abstract class Color(val color: String) {
+sealed abstract class Color(color: String) {
   def printColor = println(color)
 }
 case object Red extends Color("red")

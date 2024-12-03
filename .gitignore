@@ -2,4 +2,5 @@
 .metals
 .scala-build
 .vscode
+.DS_Store
 
